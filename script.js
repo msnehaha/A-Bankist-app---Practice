@@ -178,7 +178,7 @@ const updateUI = function (acc) {
 };
 
 const startLogoutTimer = function () {
-  let time = 10;
+  let time = 300;
 
   const tick = function () {
     const min = String(Math.trunc(time / 60)).padStart(2, 0);
@@ -205,9 +205,9 @@ const startLogoutTimer = function () {
 let currentAccount, timer;
 
 //Fake Log In
-currentAccount = account1;
-updateUI(currentAccount);
-containerApp.style.opacity = 100;
+// currentAccount = account1;
+// updateUI(currentAccount);
+// containerApp.style.opacity = 100;
 
 const now = new Date();
 // const day = `${now.getDate()}`.padStart(2, 0);
@@ -228,11 +228,6 @@ const options = {
 // const locale = navigator.language;
 // console.log(locale);
 
-labelDate.textContent = new Intl.DateTimeFormat(
-  currentAccount.locale,
-  options
-).format(now);
-
 btnLogin.addEventListener('click', function (e) {
   // Prevent form from submitting
   e.preventDefault();
@@ -248,6 +243,11 @@ btnLogin.addEventListener('click', function (e) {
       currentAccount.owner.split(' ')[0]
     }`;
     containerApp.style.opacity = 100;
+
+    labelDate.textContent = new Intl.DateTimeFormat(
+      currentAccount.locale,
+      options
+    ).format(now);
 
     // Clear input fields
     inputLoginUsername.value = inputLoginPin.value = '';
